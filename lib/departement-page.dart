@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'formation-page.dart';
 
 class DepartementPage extends StatefulWidget {
   @override
@@ -23,12 +24,17 @@ class _DepartementPageState extends State<DepartementPage> {
               itemCount: (this.listDepartements==null)?0:this.listDepartements.length,
               itemBuilder: (context,index){
                 return Card(
-                  color: Colors.green,
-                  child: RaisedButton(
-                    child: Text(this.listDepartements[index]['Nom']),
-                    onPressed: (){
-
-                    },
+                  color: Colors.teal,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                      child: Text(this.listDepartements[index]['Nom']),
+                      onPressed: (){
+                          Navigator.push(context, 
+                              MaterialPageRoute(
+                                  builder: (conext) => new FormationPage(listDepartements[index]) ));
+                      },
+                    ),
                   ),
                 );
               }
@@ -45,7 +51,7 @@ class _DepartementPageState extends State<DepartementPage> {
   }
 
   void loadDepartements(){
-    String url="http://192.168.1.7:1105/Departement/getAllDepartement";
+    String url="http://172.17.0.1:1105/Departement/getAllDepartement";
     http.get(url)
         .then((resp){
       setState((){

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacie_mobile/formation-page.dart';
 import 'package:pharmacie_mobile/departement-page.dart';
-import 'package:pharmacie_mobile/pharmacie-page.dart';
 import 'package:pharmacie_mobile/setting-page.dart';
 import 'MenuItem.dart';
 
 void main() => runApp(MaterialApp(
   theme: ThemeData(
     appBarTheme: AppBarTheme(
-      color: Colors.green
+      color: Colors.teal
     )
   ),
 
@@ -24,9 +22,8 @@ class MyApp extends StatefulWidget{
 class _MyAppState extends State<MyApp> {
 
   final menus = [
-    {'title':'Home', 'icon':Icon(Icons.home),'page':PharmaciePage()},
     {'title':'Departement', 'icon':Icon(Icons.room),'page':DepartementPage()},
-    {'title':'Formation', 'icon':Icon(Icons.school),'page':FormationPage()},
+    //{'title':'Formation', 'icon':Icon(Icons.school),'page':FormationPage()},
     {'title':'Setting', 'icon':Icon(Icons.settings),'page':SettingPage()},
     {'title':'Contact', 'icon':Icon(Icons.contact_mail),'page':SettingPage()},
   ];
@@ -46,7 +43,7 @@ class _MyAppState extends State<MyApp> {
             ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.lightGreenAccent,Colors.green]
+                  colors: [Colors.teal,Colors.teal]
                 )
               ),
             ),
