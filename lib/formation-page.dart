@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class FormationPage extends StatefulWidget {
 
@@ -11,6 +13,7 @@ class FormationPage extends StatefulWidget {
 }
 
 class _FormationPageState extends State<FormationPage> {
+  List<dynamic> listFormations;
 
   @override
   Widget build(BuildContext context) {
@@ -18,27 +21,25 @@ class _FormationPageState extends State<FormationPage> {
       appBar: AppBar(
         title: Text('Formations de ${widget.departement['Nom']}'),
       ),
-      body: Center(
-          child: Text("liste des formations")
-          /*ListView.builder(
-              itemCount: (this.listFormations==null)?0:this.listFormations.length,
-              itemBuilder: (context,index){
-                return Card(
-                  color: Colors.green,
-                  child: RaisedButton(
-                    child: Text(this.listFormations[index]['nom']),
-                    onPressed: (){
+          body: Center(
+            child: (this.listFormations==null)?CircularProgressIndicator():
 
-                    },
-                  ),
-                );
-              }
-          )*/
+              ListView.builder(
+                  itemCount: (this.listFormations==null)?0:this.listFormations.length,
+                  itemBuilder: (context,index){
+                    return Card(
+                      color: Colors.green,
+                        child: RaisedButton(
+                        child: Text(this.listFormations[index]['Nom']),
+
+                        )
+                    );
+                  })
       ),
     );
   }
 
-  /*@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -46,15 +47,13 @@ class _FormationPageState extends State<FormationPage> {
   }
 
   void loadFormations(){
-    String url="http://192.168.1.7:1105/Departement/getAllDepartement";
-    http.get(url)
-        .then((resp){
+    String url = "http://192.168.42.12:1105/Departement/formations/${widget.departement['Id']}";
+    http.get(url).then((resp) {
       setState((){
-        this.listFormations=json.decode(resp.body)['Departements'];
+        this.listFormations=json.decode(resp.body)['Formations'];
       });
-
     }).catchError((err){
       print(err);
     });
-  }*/
+  }
 }

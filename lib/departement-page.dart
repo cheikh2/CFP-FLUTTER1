@@ -51,7 +51,7 @@ class _DepartementPageState extends State<DepartementPage> {
   }
 
   void loadDepartements(){
-    String url="http://172.17.0.1:1105/Departement/getAllDepartement";
+    String url="http://192.168.42.12:1105/Departement/getAllDepartement";
     http.get(url)
         .then((resp){
       setState((){
